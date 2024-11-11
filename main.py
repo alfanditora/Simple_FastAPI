@@ -22,6 +22,10 @@ async def message():
             "PUT PART "  : "update part to database",
             "DELETE PART": "delete part from database"}
 
+@app.get("/parts")
+async def parts():
+    return data
+
 @app.get('/parts/{part_id}')
 async def read_part(part_id: int):
     for item in data['parts']:
@@ -29,7 +33,7 @@ async def read_part(part_id: int):
             return item
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Part with ID {part_id} not found')
 
-@app.post('/parts', status_code=status.HTTP_201_CREATED)
+@app.post('/newparts', status_code=status.HTTP_201_CREATED)
 async def create_part(part: Part):
     new_part = part.dict()
     data['parts'].append(new_part)
@@ -37,7 +41,7 @@ async def create_part(part: Part):
         json.dump(data, write_file, indent=4)
     return new_part
 
-@app.put('/parts/{part_id}')
+@app.put('/updateparts/{part_id}')
 async def update_part(part_id: int, updated_part: Part):
     for i, item in enumerate(data['parts']):
         if item['id'] == part_id:
@@ -47,7 +51,7 @@ async def update_part(part_id: int, updated_part: Part):
             return data['parts'][i]
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Part with ID {part_id} not found')
 
-@app.delete('/parts/{part_id}', status_code=status.HTTP_204_NO_CONTENT)
+@app.delete('/deleteparts/{part_id}', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_part(part_id: int):
     for i, item in enumerate(data['parts']):
         if item['id'] == part_id:
