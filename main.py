@@ -17,15 +17,14 @@ class Part(BaseModel):
 async def message():
     return {"FastAPI": "Keyboard PARTS",
             "Alfandito Rais Akbar": "18222037",
-            "PART": "domain/parts",
-            "GET PART"   : "get part from database domain/parts/id_part",
-            "POST PART"  : "add part to database domain/newparts",
-            "PUT PART "  : "update part to database domain/updateparys/id_part",
-            "DELETE PART": "delete part from database domain/deleteparts?id_part"}
+            "PART": "domain/parts"}
 
 @app.get("/parts")
 async def parts():
-    return {"Choose part": "domain/parts/id_part"}
+    return {"Choose part": "domain/parts/id_part",
+            "Adding part": "domain/newparts",
+            "Update part": "domain/updateparts/id_part",
+            "Delete part": "domain/deleteparts/id_part"}
 
 @app.get('/parts/{part_id}')
 async def read_part(part_id: int):
