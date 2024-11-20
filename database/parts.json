@@ -1,0 +1,22 @@
+{
+    "parts": [
+        {
+            "id": 1,
+            "name": "Keycaps",
+            "description": "This is keycaps",
+            "price": 9.99
+        },
+        {
+            "id": 2,
+            "name": "Keyboard",
+            "description": "This is keyboard",
+            "price": 14.99
+        },
+        {
+            "id": 3,
+            "name": "Switch",
+            "description": "This is switch",
+            "price": 0.99
+        }
+    ]
+}
